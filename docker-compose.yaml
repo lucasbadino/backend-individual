@@ -1,0 +1,24 @@
+version: '1.0'
+services:
+  ecommerce:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.development
+    depends_on:
+      - postgres
+    restart: always
+  postgres:
+    image: postgres:15
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env.development
+volumes:
+  postgres-data:
+
+
